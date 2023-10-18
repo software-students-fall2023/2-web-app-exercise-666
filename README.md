@@ -12,4 +12,4 @@ See instructions. Delete this line and place a link to the user stories here.
 
 ## Task boards
 
-(https://github.com/orgs/software-students-fall2023/projects/36/views/1)https://github.com/orgs/software-students-fall2023/projects/36/views/1
+[Team 666 Task Boards](https://github.com/orgs/software-students-fall2023/projects/36/views/1)
