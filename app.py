@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, url_for, redirect
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 from pymongo.mongo_client import MongoClient
 import os
 
-password = os.getenv('PASSWORD')
 app = Flask(__name__)
-uri = 'mongodb+srv://breadlover:' + password +'@cluster0.lieum6u.mongodb.net/SE2_666?retryWrites=true&w=majority'
-connection = MongoClient(uri)
-db = connection["SE2_666"]
-professors = db.professors
-courses = db.courses
+app.config['MONGO_URI'] = "mongodb+srv://breadlover:admin@cluster0.lieum6u.mongodb.net/SE2_666?retryWrites=true&w=majority"
+mongo = PyMongo(app)
+courses = mongo.db.courses
+professors = mongo.db.courses
 
 @app.route('/')
 def show_home():
@@ -20,29 +20,28 @@ def show_add():
 
 @app.route('/add', methods=['POST'])
 def add_course():
-    course_id = request.form['courseId']
-    course_name = request.form['courseName']
-    professor_name = request.form['professorName']
-
-    if professors.find_one({"name": professor_name}) is None:
-        return render_template('add_course.html', message = "Error: Professor Not Existed")
-    if courses.find_one({"course_id": course_id}) is not None:
-        return render_template('add_course.html', message = "Error: Duplicate Course ID")
-    course_location = request.form['courseLocation']
+    course_id = request.form.get('courseId')
+    course_name = request.form.get('courseName')
+    professor_name = request.form.get('professorName')
+    course_location = request.form.get('courseLocation')
+    
     doc = {
-        "course_id" : course_id,
-        "course_name" : course_name,
-        "professor_name" : professor_name,
-        "course_location" : course_location
-        }
+        "course_id": course_id,
+        "course_name": course_name,
+        "professor_name": professor_name,
+        "course_location": course_location
+    }
+
     courses.insert_one(doc)
-    return render_template('add_course.html', message = "Added Successfully")
+
+    return render_template('add_course.html', message="Added Successfully")
+
 
 @app.route('/delete')
 def show_delete():
     return render_template('delete_course.html', message = "")
 
-@app.route('/delete', method=['POST'])
+@app.route('/delete', methods=['POST'])
 def delete_course():
     course_id = request.form['courseId']
     doc = courses.find_one({"course_id": course_id})
@@ -56,7 +55,7 @@ def delete_course():
 def show_verify():
     return render_template('edit_course_verify.html', message = "")
 
-@app.route('/verify_id', method=['POST'])
+@app.route('/verify_id', methods=['POST'])
 def check_id():
     course_id = request.form['courseId']
     if courses.find_one({"course_id": course_id}) is None:
@@ -68,7 +67,7 @@ def check_id():
 def show_edit(id):
     return render_template('edit_course_edit.html', course_id = id, message = "")
 
-@app.route('/edit/<string:id>', method=['POST'])
+@app.route('/edit/<string:id>', methods=['POST'])
 def edit_course(id):
     course_name = request.form['courseName']
     professor_name = request.form['professorName']
@@ -97,7 +96,7 @@ def show_courses():
 def show_search():
     render_template("search_course.html", docs = None, message ="")
 
-@app.route('/search', method=['POST'])
+@app.route('/search', methods=['POST'])
 def search_course():
     course_id = request.form['courseId']
     docs = courses.find({"course_id": course_id})
