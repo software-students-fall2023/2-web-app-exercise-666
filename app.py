@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request, url_for, redirect
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo.mongo_client import MongoClient
 import os
 
+password = os.getenv('PASSWORD')
 app = Flask(__name__)
-app.config['MONGO_URI'] = "mongodb+srv://breadlover:admin@cluster0.lieum6u.mongodb.net/SE2_666?retryWrites=true&w=majority"
-mongo = PyMongo(app)
-courses = mongo.db.courses
-professors = mongo.db.courses
+uri = 'mongodb+srv://breadlover:' + password +'@cluster0.lieum6u.mongodb.net/SE2_666?retryWrites=true&w=majority'
+connection = MongoClient(uri)
+db = connection["SE2_666"]
+professors = db.professors
+courses = db.courses
 
 @app.route('/')
 def show_home():
@@ -20,22 +20,23 @@ def show_add():
 
 @app.route('/add', methods=['POST'])
 def add_course():
-    course_id = request.form.get('courseId')
-    course_name = request.form.get('courseName')
-    professor_name = request.form.get('professorName')
-    course_location = request.form.get('courseLocation')
-    
+    course_id = request.form['courseId']
+    course_name = request.form['courseName']
+    professor_name = request.form['professorName']
+
+    if professors.find_one({"name": professor_name}) is None:
+        return render_template('add_course.html', message = "Error: Professor Not Existed")
+    if courses.find_one({"course_id": course_id}) is not None:
+        return render_template('add_course.html', message = "Error: Duplicate Course ID")
+    course_location = request.form['courseLocation']
     doc = {
-        "course_id": course_id,
-        "course_name": course_name,
-        "professor_name": professor_name,
-        "course_location": course_location
-    }
-
+        "course_id" : course_id,
+        "course_name" : course_name,
+        "professor_name" : professor_name,
+        "course_location" : course_location
+        }
     courses.insert_one(doc)
-
-    return render_template('add_course.html', message="Added Successfully")
-
+    return render_template('add_course.html', message = "Added Successfully")
 
 @app.route('/delete')
 def show_delete():
