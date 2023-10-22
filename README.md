@@ -10,26 +10,26 @@ A little exercise to build a web application following an agile development proc
 
 ## User stories
 
-
-As a student, I want to view all available courses for the current semester so that I can make informed decisions about which classes to enroll in.
-
-As a student, I want to view details about a specific professor so that I can understand their background and expertise before enrolling in their course.
+As an administrator, I want to view all courses available for the current semester so that I can manage course offerings effectively.
 
 As an administrator, I want to add new courses to the database so that students can see the latest course offerings for the semester.
 
-As an administrator, I want to edit details of an existing course so that any changes or updates to the course can be reflected accurately in the system.
+As an administrator, I want to modify the details of existing courses to ensure that course information is accurate and up to date.
 
 As an administrator, I want to remove a course from the system so that students do not see courses that are no longer being offered.
 
-As a student, I want to search for a specific course by its name or ID so that I can quickly find the details and enroll if it matches my requirements.
+As an administrator, I want to search for a specific course using its name or ID to quickly manage or modify course information.
 
-As a student, I want to view the location of a course so that I can plan my campus travel accordingly.
+As an administrator, I want to view details about a specific professor to ensure that instructors are correctly associated with their courses.
 
-As a student, I want to see specific section numbers for a course so that I can choose a section that fits my schedule.
+As an administrator, I want to check the location of a specific course to ensure that room allocations are correctly documented.
 
-As a student, I want to enroll in a selected course so that I can secure my spot for the semester.
+As an administrator, I want to assign specific professors to courses so that I can efficiently manage course-instructor pairings for the semester.
 
-As a student, I want to leave feedback about a course I've taken so that future students can benefit from my experience and insights.
+As an administrator, I want to set the maximum enrollment capacity for each course to ensure we don't overbook classrooms.
+
+As an administrator, I want to regularly backup the system's data and have the ability to restore it, ensuring data safety and minimizing potential loss in case of system failures.
+
 
 ## Task boards
 
