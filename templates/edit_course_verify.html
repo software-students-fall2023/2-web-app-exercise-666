@@ -39,26 +39,5 @@
         
         <button type="submit">Verify Course ID</button>
     </form>
-
-    <script>
-        function verifyCourseId() {
-            const courseId = document.getElementById('courseId').value;
-
-            // Send request to the server to verify course ID
-            fetch(`verify-api-endpoint/${courseId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.valid) {
-                        // Redirect to the edit page if the course ID is valid
-                        window.location.href = `edit_course_edit.html?courseId=${courseId}`;
-                    } else {
-                        alert('Invalid Course ID. Please try again.');
-                    }
-                })
-                .catch(error => console.error('Error verifying course ID:', error));
-
-            return false; // Prevent form submission
-        }
-    </script>
 </body>
 </html>
