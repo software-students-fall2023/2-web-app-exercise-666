@@ -35,14 +35,14 @@
     <h3>{{message}}</h3>
     <div id="result">
         {% if docs %}
-        {% for doc in docs %}
-        <ul>
-            <li>Course ID: {{doc.course_id}}</li>
-            <li>Course Name: {{doc.course_name}}</li>
-            <li>Professor: {{doc.professor_name}}</li>
-            <li>Location: {{doc.course_location}}</li>
-        </ul>
-        {% endfor %}
+            {% for doc in docs %}
+            <ul>
+                <li>Course ID: {{doc.course_id}}</li>
+                <li>Course Name: {{doc.course_name}}</li>
+                <li>Professor: {{doc.professor_name}}</li>
+                <li>Location: {{doc.course_location}}</li>
+            </ul>
+            {% endfor %}
         {% endif %}
     </div>
 
