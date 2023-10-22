@@ -33,7 +33,7 @@
 </head>
 <body>
     <h1>Delete Course</h1>
-    <form id="deleteForm">
+    <form id="deleteForm" action="{{ url_for('delete_courese') }}">
         <label for="courseId">Enter Course ID to Delete:</label>
         <input type="text" id="courseId" name="courseId" required>
         <button type="submit">Delete Course</button>

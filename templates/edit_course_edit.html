@@ -33,7 +33,7 @@
 </head>
 <body>
     <h1>Edit Course</h1>
-    <form id="editForm" method="POST">
+    <form id="editForm" method="POST" action="{{ url_for('edit_course') }}">
         <label for="courseId">Course ID:</label>
         <input type="text" id="courseId" name="courseId" value="{{course_id}}">
 

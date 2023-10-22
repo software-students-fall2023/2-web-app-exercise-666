@@ -33,7 +33,7 @@
 </head>
 <body>
     <h1>Enter a Course ID to Edit</h1>
-    <form id="verifyForm" onsubmit="return verifyCourseId()">
+    <form id="verifyForm" action="{{ url_for('check_id') }}">
         <label for="courseId">Enter Course ID:</label>
         <input type="text" id="courseId" name="courseId" required>
         
