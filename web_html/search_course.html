@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search_course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Search a course @NYU</h2>
+    
+    <label for="search">Search:</label>
+    <input type="text" id="search" placeholder="Please enter the Course ID you wish to search for">
+
+    <button onclick="searchDatabase()">Search</button>
+
+    <div id="result">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        function searchDatabase() {
+            const searchQuery = document.getElementById('search').value;
+
+            // Make an AJAX request to your server to query MongoDB
+            fetch(`http://localhost:3000/courses?query=${encodeURIComponent(searchQuery)}`)
+                .then(response => response.json())
+                .then(data => displayResults(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayResults(results) {
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultContainer.innerHTML = '<p>No results found.</p>';
+            } else {
+                results.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.innerHTML = `<h3>${item.courseName}</h3><p>Professor: ${item.professor}</p><p>Location: ${item.location}</p>`;
+                    resultContainer.appendChild(itemDiv);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
