@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search_course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Search a course @NYU</h2>
+    
+    <form id="searchForm" method="POST">
+        <label for="search">Search:</label>
+        <input type="text" id="search" placeholder="Please enter the Course ID you wish to search for">
+        <button type="submit">Search</button>
+    </form>
+
+    <h3>{{message}}</h3>
+    <div id="result">
+        {% if docs %}
+        {% for doc in docs %}
+        <ul>
+            <li>Course ID: {{doc.course_id}}</li>
+            <li>Course Name: {{doc.course_name}}</li>
+            <li>Professor: {{doc.professor_name}}</li>
+            <li>Location: {{doc.course_location}}</li>
+        </ul>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -43,12 +43,12 @@
     </header>
 
     <main>
-        <a href="browse_courses.html" class="option">Browse All Courses @NYU</a>
-        <a href="browse_professors.html" class="option">Browse All Professors @NYU</a>
-        <a href="add_course.html" class="option">Add a course @NYU</a>
-        <a href="edit_course_verify.html" class="option">Edit a course @NYU</a>
-        <a href="delete_course.html" class="option">Delete a course @NYU</a>
-        <a href="search_course.html" class="option">Search for a specific course @NYU</a>
+        <a href="{{ url_for('show_courses') }}" class="option">Browse All Courses @NYU</a>
+        <a href="{{ url_for('show_profs') }}" class="option">Browse All Professors @NYU</a>
+        <a href="{{ url_for('show_add') }}" class="option">Add a course @NYU</a>
+        <a href="{{ url_for('show_verify') }}" class="option">Edit a course @NYU</a>
+        <a href="{{ url_for('show_delete') }}" class="option">Delete a course @NYU</a>
+        <a href="{{ url_for('show_search') }}.html" class="option">Search for a specific course @NYU</a>
     </main>
 </body>
 </html>

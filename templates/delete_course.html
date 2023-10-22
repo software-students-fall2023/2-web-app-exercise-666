@@ -36,25 +36,7 @@
     <form id="deleteForm">
         <label for="courseId">Enter Course ID to Delete:</label>
         <input type="text" id="courseId" name="courseId" required>
-        
-        <button type="button" onclick="deleteCourse()">Delete Course</button>
+        <button type="submit">Delete Course</button>
     </form>
-
-    <script>
-        function deleteCourse() {
-            const courseId = document.getElementById('courseId').value;
-
-            // Send request to the server to delete the course
-            fetch(`your-api-endpoint/${courseId}`, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Course deleted successfully!');
-                // Optionally, you can redirect the user or perform other actions after deleting the course.
-            })
-            .catch(error => console.error('Error deleting course:', error));
-        }
-    </script>
 </body>
 </html>

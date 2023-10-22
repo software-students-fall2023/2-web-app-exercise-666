@@ -33,4 +33,6 @@ As a student, I want to leave feedback about a course I've taken so that future 
 
 ## Task boards
 
-[Team 666 Task Boards](https://github.com/orgs/software-students-fall2023/projects/36/views/1)
+[Team 666 Task Boards - Sprint 1](https://github.com/orgs/software-students-fall2023/projects/36/views/1)
+
+## App Instruction

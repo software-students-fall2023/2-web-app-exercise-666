@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Courses @NYU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Courses @NYU</h1>
+    {% for doc in docs %}
+    <ul>
+        <li>Course ID: {{doc.course_id}}</li>
+        <li>Course Name: {{doc.course_name}}</li>
+        <li>Professor: {{doc.professor_name}}</li>
+        <li>Location: {{doc.course_location}}</li>
+    </ul>
+    {% else %}
+    <h3>No Courses Added Yet</h3>
+    {% endfor %}
+</body>
+</html>
