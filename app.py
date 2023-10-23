@@ -122,4 +122,4 @@ def search_course():
     docs = courses.find({"course_id": course_id})
     if courses.count_documents({"course_id": course_id}) == 0:
         return render_template("search_course.html", docs = {}, message ="Error: Course Not Existed")
-    return render_template("search_course.html", docs = docs, message ="")
+    return render_template("search_course.html", docs = docs, message ="Course Found")
