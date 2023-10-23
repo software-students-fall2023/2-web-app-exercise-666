@@ -25,7 +25,6 @@
 
         .option {
             display: block;
-            width: 100%;
             padding: 15px;
             margin-bottom: 10px;
             background-color: #fff;
@@ -43,12 +42,12 @@
     </header>
 
     <main>
-        <a href="{{ url_for('show_courses') }}" class="option">Browse All Courses @NYU</a>
-        <a href="{{ url_for('show_profs') }}" class="option">Browse All Professors @NYU</a>
+        <a href="{{ url_for('show_courses') }}" class="option">All Courses @NYU</a>
+        <a href="{{ url_for('show_profs') }}" class="option">All Professors @NYU</a>
         <a href="{{ url_for('show_add') }}" class="option">Add a course @NYU</a>
         <a href="{{ url_for('show_verify') }}" class="option">Edit a course @NYU</a>
         <a href="{{ url_for('show_delete') }}" class="option">Delete a course @NYU</a>
-        <a href="{{ url_for('show_search') }}" class="option">Search for a specific course @NYU</a>
+        <a href="{{ url_for('show_search') }}" class="option">Search a course @NYU</a>
     </main>
 </body>
 </html>

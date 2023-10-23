@@ -7,18 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        } 
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
         }
 
         button {
@@ -28,26 +26,72 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+        } */
+
+        main {
+            width: 80%;   
+            max-width: 500px; 
+            box-sizing: border-box; 
+            background-color: #fff;
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
         }
+
+        form{
+            padding: 20px;
+            padding-bottom: 0px;
+        }
+
+        label, input{
+            width: 100%; 
+            margin-bottom: 0px; 
+            box-sizing: border-box; 
+        }
+
+        input{
+            display: block;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            text-align: left;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Add New Course</h1>
-    <form id="courseForm" method="post">
-        <label for="courseId">Course ID:</label>
-        <input type="text" id="courseId" name="courseId" required>
-
-        <label for="courseName">Course Name:</label>
-        <input type="text" id="courseName" name="courseName" required>
-
-        <label for="professorName">Professor Name:</label>
-        <input type="text" id="professorName" name="professorName" required>
-
-        <label for="courseLocation">Course Location:</label>
-        <input type="text" id="courseLocation" name="courseLocation" required>
-
-        <button type="submit">Add Course</button>
-    </form>
+    <header>
+        <h1>Add Course</h1>
+    </header>
+    <main>
+        <form action="{{ url_for('add_course') }}" id="courseForm" method="post">
+            <label for="courseId">Course ID:</label>
+            <input type="text" id="courseId" name="courseId" required><br>
+    
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName" name="courseName" required><br>
+    
+            <label for="professorName">Professor Name:</label>
+            <input type="text" id="professorName" name="professorName" required><br>
+    
+            <label for="courseLocation">Course Location:</label>
+            <input type="text" id="courseLocation" name="courseLocation" required><br>
+    
+            <button type="submit">Add Course</button>
+            <h3>{{message}}</h3>
+        </form>
+        <a href="{{ url_for('show_home') }}"><button style="background-color: #3a3a3a; margin-left: 20px;">Back</button></a>
+    </main>
 </body>
 
 </html>

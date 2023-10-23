@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>search_course</title>
     <style>
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
@@ -20,21 +20,96 @@
         #result {
             margin-top: 20px;
         }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        } */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        } 
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main{
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        } 
+        form{
+            padding: 20px;
+            padding-bottom: 0px;
+        }
+
+        label, input{
+            width: 100%; 
+            margin-bottom: 10px; 
+            box-sizing: border-box; 
+        }
+
+        input{
+            display: block;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            text-align: left;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        ul {
+            border: 3px solid #ddd;
+            list-style-type: none;
+            padding: 0;
+            border-radius: 8px;
+        }
+
+        li {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-
-    <h2>Search a course @NYU</h2>
+    <header>
+        <h1>Search Course @NYU</h1>
+    </header>
     
-    <form id="searchForm" method="POST">
-        <label for="search">Search:</label>
-        <input type="text" id="search" placeholder="Please enter the Course ID you wish to search for">
-        <button type="submit">Search</button>
-    </form>
-
-    <h3>{{message}}</h3>
-    <div id="result">
-        {% if docs %}
+    <main>
+        <form id="searchForm" method="POST" action="{{ url_for('search_course') }}">
+            <label for="search">Enter Course ID:</label>
+            <input type="text" id="search" name="courseId">
+            <button type="submit">Search</button>
+            <h3>{{message}}</h3>
+        </form>
+    
+        
+        <div id="result">
             {% for doc in docs %}
             <ul>
                 <li>Course ID: {{doc.course_id}}</li>
@@ -43,8 +118,8 @@
                 <li>Location: {{doc.course_location}}</li>
             </ul>
             {% endfor %}
-        {% endif %}
-    </div>
-
+        </div>
+        <a href="{{ url_for('show_home') }}"><button style="background-color: #3a3a3a; margin-left: 20px;">Back</button></a>
+    </main>
 </body>
 </html>

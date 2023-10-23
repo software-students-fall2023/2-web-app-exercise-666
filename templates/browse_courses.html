@@ -7,20 +7,43 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        } 
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
         }
 
-        h1 {
-            text-align: center;
+        main{
+            padding: 20px;
         }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        } 
 
         ul {
+            border: 3px solid #ddd;
             list-style-type: none;
             padding: 0;
+            border-radius: 8px;
         }
 
         li {
-            margin-bottom: 20px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 8px;
@@ -28,16 +51,25 @@
     </style>
 </head>
 <body>
-    <h1>All Courses @NYU</h1>
-    {% for doc in docs %}
-    <ul>
-        <li>Course ID: {{doc.course_id}}</li>
-        <li>Course Name: {{doc.course_name}}</li>
-        <li>Professor: {{doc.professor_name}}</li>
-        <li>Location: {{doc.course_location}}</li>
-    </ul>
-    {% else %}
-    <h3>No Courses Added Yet</h3>
-    {% endfor %}
+    <header>
+        <h1>All Courses @NYU</h1>
+    </header>
+    
+    <main>
+        {%if docs is defined and docs%}
+        {% for doc in docs %}
+        <ul>
+            <li><b>Course ID:</b> {{doc.course_id}}</li>
+            <li><b>Course Name:</b> {{doc.course_name}}</li>
+            <li><b>Professor:</b> {{doc.professor_name}}</li>
+            <li><b>Location:</b> {{doc.course_location}}</li>
+        </ul>
+        {% endfor %}
+        {% else %}
+            <h3>No Courses Added Yet</h3>
+        {% endif %}
+        <a href="{{ url_for('show_home') }}"><button style="background-color: #3a3a3a; margin-top: 5px;">Back</button></a>
+    </main>
+
 </body>
 </html>
