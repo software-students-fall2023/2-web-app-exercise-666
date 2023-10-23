@@ -7,20 +7,43 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        } 
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
         }
 
-        h1 {
-            text-align: center;
+        main{
+            padding: 20px;
         }
+
+        button {
+            padding: 10px;
+            background-color: #3a3a3a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        } 
 
         ul {
+            border: 3px solid #ddd;
             list-style-type: none;
             padding: 0;
+            border-radius: 8px;
         }
 
         li {
-            margin-bottom: 20px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 8px;
@@ -28,11 +51,16 @@
     </style>
 </head>
 <body>
-    <h1>All Professors @NYU</h1>
-    <ul>
-    {% for doc in docs %}
-        <li>Name: {{doc.name}} Email {{doc.email}}</li>
-    {% endfor %}
-    </ul>
+    <header>
+        <h1>All Professors @NYU</h1>
+    </header>
+    <main>
+        <ul>
+            {% for doc in docs %}
+                <li> <b>Name:</b> {{doc.name}} <br> <b>Email:</b> {{doc.email}}</li>
+            {% endfor %}
+            </ul>
+            <a href="{{ url_for('show_home') }}" type="submit"><button>Back</button></a>
+    </main>
 </body>
 </html>
